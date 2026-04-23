@@ -34,7 +34,7 @@ jobs:
       - name: Install Web deps
         working-directory: web
         run: |
-          if [ -f package.json ]; then npm ci; fi
+          npm ci
 
       - name: Run analysis scripts
         run: |
