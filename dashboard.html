@@ -1,0 +1,798 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repo Atlas Dashboard</title>
+    <style>
+        :root {
+            --bg: #f7f3ee;
+            --surface: #fffaf6;
+            --surface-elevated: #ffffff;
+            --text: #2f241f;
+            --muted: #7c6a5f;
+            --border: #eadfd6;
+            --accent: #c46a3b;
+            --accent-soft: #f4e3d8;
+            --shadow: 0 10px 30px rgba(84, 53, 35, 0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #fbf8f4 0%, var(--bg) 100%);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+        a { color: var(--accent); }
+        .container { max-width: 1120px; margin: 0 auto; padding: 48px 24px 64px; }
+        .header {
+            background: rgba(255, 250, 246, 0.9);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px 28px;
+            box-shadow: var(--shadow);
+            margin-bottom: 28px;
+        }
+        h1 { font-size: clamp(2rem, 4vw, 3.2rem); margin: 0 0 8px; letter-spacing: -0.03em; }
+        .header p { margin: 0; color: var(--muted); font-size: 1.05rem; }
+        h2 {
+            font-size: 1.35rem;
+            margin: 0 0 16px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+        .section {
+            background: rgba(255, 250, 246, 0.85);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-top: 24px;
+        }
+        .cluster { margin-bottom: 22px; }
+        .repo-table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 16px; }
+        .repo-table th, .repo-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .repo-table th { background: #f7eee6; color: var(--muted); font-size: 0.86rem; text-transform: uppercase; letter-spacing: 0.06em; }
+        .repo-table tr:hover td { background: #fffdfb; }
+        .repo-name a { color: var(--text); text-decoration: none; font-weight: 650; }
+        .repo-name a:hover { color: var(--accent); }
+        .status-active { color: #2d8a57; font-weight: 600; }
+        .status-stale { color: #b7791f; font-weight: 600; }
+        .status-zombie { color: #8c7a6b; font-weight: 600; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; }
+        .summary-item { background: var(--surface-elevated); padding: 22px; border-radius: 18px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .summary-item .value { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.03em; color: var(--accent); }
+        .summary-item .label { font-size: 0.9rem; color: var(--muted); margin-top: 4px; }
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="eyebrow">Claude-style overview</div>
+            <h1>Repo Atlas Dashboard</h1>
+            <p>A calm, editorial snapshot of the qiao-925 GitHub account.</p>
+        </div>
+        <div class="summary-grid">
+            
+        <div class="summary-item"><div class="value">66</div><div class="label">Total Repos</div></div>
+        <div class="summary-item"><div class="value">15</div><div class="label">Active (30d)</div></div>
+        <div class="summary-item"><div class="value">34</div><div class="label">Source Repos</div></div>
+        <div class="summary-item"><div class="value">32</div><div class="label">Forks</div></div>
+    
+        </div>
+        <section class="section"><h2>Action Priority Suggestions</h2><table class="repo-table"><tr><th>Priority</th><th>Suggestion</th><th>Repository</th></tr>
+            <tr>
+                <td><strong>P1</strong></td>
+                <td>核心项目 &#x27;assemble-hunting&#x27; 几乎为空，需填充实现。</td>
+                <td><a href="https://github.com/qiao-925/assemble-hunting" target="_blank">assemble-hunting</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P2</strong></td>
+                <td>主仓库 &#x27;qiao-925&#x27; 已超过6个月未更新，建议审查或归档。</td>
+                <td><a href="https://github.com/qiao-925/qiao-925" target="_blank">qiao-925</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P2</strong></td>
+                <td>主仓库 &#x27;Elasticsearch-In-Action-Ref-Code&#x27; 已超过6个月未更新，建议审查或归档。</td>
+                <td><a href="https://github.com/qiao-925/Elasticsearch-In-Action-Ref-Code" target="_blank">Elasticsearch-In-Action-Ref-Code</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P2</strong></td>
+                <td>主仓库 &#x27;learn-rocketmq-by-cursor&#x27; 已超过6个月未更新，建议审查或归档。</td>
+                <td><a href="https://github.com/qiao-925/learn-rocketmq-by-cursor" target="_blank">learn-rocketmq-by-cursor</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P2</strong></td>
+                <td>主仓库 &#x27;Java-Ecosystem&#x27; 已超过6个月未更新，建议审查或归档。</td>
+                <td><a href="https://github.com/qiao-925/Java-Ecosystem" target="_blank">Java-Ecosystem</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P2</strong></td>
+                <td>主仓库 &#x27;Peters-Go-Day-Practice&#x27; 已超过6个月未更新，建议审查或归档。</td>
+                <td><a href="https://github.com/qiao-925/Peters-Go-Day-Practice" target="_blank">Peters-Go-Day-Practice</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P2</strong></td>
+                <td>主仓库 &#x27;Practice-Go-by-Example-&#x27; 已超过6个月未更新，建议审查或归档。</td>
+                <td><a href="https://github.com/qiao-925/Practice-Go-by-Example-" target="_blank">Practice-Go-by-Example-</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P2</strong></td>
+                <td>主仓库 &#x27;Go-LearnCases&#x27; 已超过6个月未更新，建议审查或归档。</td>
+                <td><a href="https://github.com/qiao-925/Go-LearnCases" target="_blank">Go-LearnCases</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P2</strong></td>
+                <td>主仓库 &#x27;Strategy-pattern-demo&#x27; 已超过6个月未更新，建议审查或归档。</td>
+                <td><a href="https://github.com/qiao-925/Strategy-pattern-demo" target="_blank">Strategy-pattern-demo</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;mattermost&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/mattermost" target="_blank">mattermost</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;gitea&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/gitea" target="_blank">gitea</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;ants---learning&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/ants---learning" target="_blank">ants---learning</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;go&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/go" target="_blank">go</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;hugo&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/hugo" target="_blank">hugo</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;learn-go-with-tests&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/learn-go-with-tests" target="_blank">learn-go-with-tests</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;gin-examples&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/gin-examples" target="_blank">gin-examples</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;learngo&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/learngo" target="_blank">learngo</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;elasticsearch&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/elasticsearch" target="_blank">elasticsearch</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;JavaGuide&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/JavaGuide" target="_blank">JavaGuide</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;hutool&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/hutool" target="_blank">hutool</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;toBeBetterJavaer&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/toBeBetterJavaer" target="_blank">toBeBetterJavaer</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;hippo4j&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/hippo4j" target="_blank">hippo4j</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;xxl-job&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/xxl-job" target="_blank">xxl-job</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;examples&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/examples" target="_blank">examples</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;hmily&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/hmily" target="_blank">hmily</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;elasticsearch-in-action&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/elasticsearch-in-action" target="_blank">elasticsearch-in-action</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;Building-Data-Driven-Applications-with-LlamaIndex&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/Building-Data-Driven-Applications-with-LlamaIndex" target="_blank">Building-Data-Driven-Applications-with-LlamaIndex</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;cellnet&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/cellnet" target="_blank">cellnet</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;drools-in-action&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/drools-in-action" target="_blank">drools-in-action</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;goWebActualCombat&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/goWebActualCombat" target="_blank">goWebActualCombat</a></td>
+            </tr>
+            
+            <tr>
+                <td><strong>P3</strong></td>
+                <td>Fork 仓库 &#x27;GoLearn&#x27; 已超过1年未更新，建议清理。</td>
+                <td><a href="https://github.com/qiao-925/GoLearn" target="_blank">GoLearn</a></td>
+            </tr>
+            </table></section>
+        <section class="section"><h2>Evolution Timeline</h2><table class="repo-table"><tr><th>Month</th><th>New Source Repos</th></tr><tr><td>2024-10</td><td>1</td></tr><tr><td>2024-11</td><td>1</td></tr><tr><td>2025-04</td><td>2</td></tr><tr><td>2025-06</td><td>1</td></tr><tr><td>2025-07</td><td>3</td></tr><tr><td>2025-08</td><td>1</td></tr><tr><td>2025-09</td><td>2</td></tr><tr><td>2025-10</td><td>3</td></tr><tr><td>2025-11</td><td>2</td></tr><tr><td>2025-12</td><td>1</td></tr><tr><td>2026-01</td><td>1</td></tr><tr><td>2026-02</td><td>5</td></tr><tr><td>2026-03</td><td>3</td></tr><tr><td>2026-04</td><td>8</td></tr></table></section>
+        
+<section class="section cluster">
+    <h2>A1. Assemble Pipeline (6)</h2>
+    <table class="repo-table">
+        <tr><th>Name</th><th>Description</th><th>Language</th><th>Activity</th></tr>
+
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/assemble-archive" target="_blank">assemble-archive</a></td>
+                <td>Assemble output archive</td>
+                <td>-</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/assemble-publish" target="_blank">assemble-publish</a></td>
+                <td></td>
+                <td>Python</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/assemble-hunting" target="_blank">assemble-hunting</a></td>
+                <td>Assemble 4 阶段模型中的 hunting 层：定时从多个来源搜集信息，归一化后供 assemble-processing 消费</td>
+                <td>-</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/assemble-processing" target="_blank">assemble-processing</a></td>
+                <td></td>
+                <td>Jupyter Notebook</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/news-digest" target="_blank">news-digest</a></td>
+                <td></td>
+                <td>Python</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/assemble-publish-test" target="_blank">assemble-publish-test</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+                </table>
+</section>
+<section class="section cluster">
+    <h2>A2. Research Agent (Systematology) (4)</h2>
+    <table class="repo-table">
+        <tr><th>Name</th><th>Description</th><th>Language</th><th>Activity</th></tr>
+
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Creating-Systematology-RAG" target="_blank">Creating-Systematology-RAG</a></td>
+                <td></td>
+                <td>Python</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Creating-Systematology" target="_blank">Creating-Systematology</a></td>
+                <td>4 Creating-Systematology-RAG</td>
+                <td>JavaScript</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Creating-Systematology-Test" target="_blank">Creating-Systematology-Test</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Creating-Systematology-Batch" target="_blank">Creating-Systematology-Batch</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+                </table>
+</section>
+<section class="section cluster">
+    <h2>A3. AI/Agent Infra (4)</h2>
+    <table class="repo-table">
+        <tr><th>Name</th><th>Description</th><th>Language</th><th>Activity</th></tr>
+
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/agent-nightshift" target="_blank">agent-nightshift</a></td>
+                <td>A bounded agent system for long-running repository work, designed to keep execut...</td>
+                <td>Python</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/qiao-skills" target="_blank">qiao-skills</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/CloneX" target="_blank">CloneX</a></td>
+                <td>GitHub repositories management tool with grouping support</td>
+                <td>Python</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/ocr-mcp-service" target="_blank">ocr-mcp-service</a></td>
+                <td>OCR MCP Service - Image text recognition for AI Agents</td>
+                <td>Python</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+                </table>
+</section>
+<section class="section cluster">
+    <h2>A4. Personal System (3)</h2>
+    <table class="repo-table">
+        <tr><th>Name</th><th>Description</th><th>Language</th><th>Activity</th></tr>
+
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/personal-system-lab" target="_blank">personal-system-lab</a></td>
+                <td>Unified personal context container and task-kernel research</td>
+                <td>HTML</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/One-Note" target="_blank">One-Note</a></td>
+                <td></td>
+                <td>HTML</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Inspiration" target="_blank">Inspiration</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+                </table>
+</section>
+<section class="section cluster">
+    <h2>A5. Tech Learning (8)</h2>
+    <table class="repo-table">
+        <tr><th>Name</th><th>Description</th><th>Language</th><th>Activity</th></tr>
+
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/rust-rush" target="_blank">rust-rush</a></td>
+                <td>1h 倒计时 罗斯福冲锋 rust rush</td>
+                <td>HTML</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Strategy-pattern-demo" target="_blank">Strategy-pattern-demo</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Go-LearnCases" target="_blank">Go-LearnCases</a></td>
+                <td></td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Practice-Go-by-Example-" target="_blank">Practice-Go-by-Example-</a></td>
+                <td>practice coding by https://gobyexample.com/</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Peters-Go-Day-Practice" target="_blank">Peters-Go-Day-Practice</a></td>
+                <td></td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Java-Ecosystem" target="_blank">Java-Ecosystem</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/learn-rocketmq-by-cursor" target="_blank">learn-rocketmq-by-cursor</a></td>
+                <td>try to learn it with ai</td>
+                <td>-</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Elasticsearch-In-Action-Ref-Code" target="_blank">Elasticsearch-In-Action-Ref-Code</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+                </table>
+</section>
+<section class="section cluster">
+    <h2>A6. Personal Content (5)</h2>
+    <table class="repo-table">
+        <tr><th>Name</th><th>Description</th><th>Language</th><th>Activity</th></tr>
+
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Resume" target="_blank">Resume</a></td>
+                <td></td>
+                <td>Python</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/cinnamon-backup-restore" target="_blank">cinnamon-backup-restore</a></td>
+                <td></td>
+                <td>JavaScript</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/start-with-drifting" target="_blank">start-with-drifting</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Extensive-Intensive-Reading" target="_blank">Extensive-Intensive-Reading</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-stale">Stale</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/qiao-925" target="_blank">qiao-925</a></td>
+                <td></td>
+                <td>-</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+                </table>
+</section>
+<section class="section cluster">
+    <h2>B. Learning Forks (32)</h2>
+    <table class="repo-table">
+        <tr><th>Name</th><th>Description</th><th>Language</th><th>Activity</th></tr>
+
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/GoLearn" target="_blank">GoLearn</a></td>
+                <td>《go语言从入门到进阶实战》学习代码</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/goWebActualCombat" target="_blank">goWebActualCombat</a></td>
+                <td>🔥🔥🔥🔥🔥🔥重磅！《Go Web编程实战派从入门到精通》随书源码开源啦，Go语言/Web开发/高并发/微服务/Gin/Redis/MongoDB/并发编程/Do...</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/drools-in-action" target="_blank">drools-in-action</a></td>
+                <td></td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/cellnet" target="_blank">cellnet</a></td>
+                <td>High performance, simple, extensible golang open source network library</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/Building-Data-Driven-Applications-with-LlamaIndex" target="_blank">Building-Data-Driven-Applications-with-LlamaIndex</a></td>
+                <td>Building Data-Driven Applications with LlamaIndex, published by Packt</td>
+                <td>Python</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/elasticsearch-in-action" target="_blank">elasticsearch-in-action</a></td>
+                <td>Elasticsearch in Action Book</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/hmily" target="_blank">hmily</a></td>
+                <td>Distributed transaction solutions</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/examples" target="_blank">examples</a></td>
+                <td>Home for Elasticsearch examples available to everyone. It&#x27;s a great way to get s...</td>
+                <td>Jupyter Notebook</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/xxl-job" target="_blank">xxl-job</a></td>
+                <td>A distributed task scheduling framework.（分布式任务调度平台XXL-JOB）</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/hippo4j" target="_blank">hippo4j</a></td>
+                <td>📌 异步线程池框架，支持线程池动态变更&amp;监控&amp;报警，无需修改代码轻松引入。Asynchronous thread pool framework, support...</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/toBeBetterJavaer" target="_blank">toBeBetterJavaer</a></td>
+                <td>一份通俗易懂、风趣幽默的Java学习指南，内容涵盖Java基础、Java并发编程、Java虚拟机、Java企业级开发、Java面试等核心知识点。学Java，就认...</td>
+                <td>-</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/hutool" target="_blank">hutool</a></td>
+                <td>🍬A set of tools that keep Java sweet.</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/JavaGuide" target="_blank">JavaGuide</a></td>
+                <td>「Java学习+面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/elasticsearch" target="_blank">elasticsearch</a></td>
+                <td>Free and Open Source, Distributed, RESTful Search Engine</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/learngo" target="_blank">learngo</a></td>
+                <td>❤️ 1000+ Hand-Crafted Go Examples, Exercises, and Quizzes. 🚀 Learn Go by fixing ...</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/gin-examples" target="_blank">gin-examples</a></td>
+                <td>A repository to host examples and tutorials for Gin.</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/learn-go-with-tests" target="_blank">learn-go-with-tests</a></td>
+                <td>Learn Go with test-driven development</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/hugo" target="_blank">hugo</a></td>
+                <td>The world’s fastest framework for building websites.</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/go" target="_blank">go</a></td>
+                <td>The Go programming language</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/ants---learning" target="_blank">ants---learning</a></td>
+                <td>🐜🐜🐜 ants is the most powerful and reliable pooling solution for Go.</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/gitea" target="_blank">gitea</a></td>
+                <td>Git with a cup of tea! Painless self-hosted all-in-one software development serv...</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/mattermost" target="_blank">mattermost</a></td>
+                <td>Mattermost is an open source platform for secure collaboration across the entire...</td>
+                <td>TypeScript</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/go-admin" target="_blank">go-admin</a></td>
+                <td>基于Gin + Vue + Element UI &amp;  Arco Design &amp; Ant Design 的前后端分离权限管理系统脚手架（包含了：多租户的支持，...</td>
+                <td>Go</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/rag-book-demo" target="_blank">rag-book-demo</a></td>
+                <td>《从零开始构建企业级RAG 系统》书中演示案例代码</td>
+                <td>Python</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/analysis-ik" target="_blank">analysis-ik</a></td>
+                <td>🚌 The IK Analysis plugin integrates Lucene IK analyzer into Elasticsearch and Op...</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/drools-book" target="_blank">drools-book</a></td>
+                <td>《Drools规则引擎实战：架构、案例与进阶指导》一书相关源码</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/rag-in-action" target="_blank">rag-in-action</a></td>
+                <td>极客时间RAG训练营，RAG 10大组件全面拆解，4个实操项目吃透 RAG 全流程。正如刘焕勇老师所言：RAG的落地，往往是面向业务做RAG，而不是反过来面向R...</td>
+                <td>Jupyter Notebook</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/incubator-kie-drools" target="_blank">incubator-kie-drools</a></td>
+                <td>Drools is a rule engine, DMN engine and complex event processing (CEP) engine fo...</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/distribute-transaction" target="_blank">distribute-transaction</a></td>
+                <td>分布式事务书籍随书源码</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/incubator-seata" target="_blank">incubator-seata</a></td>
+                <td>:fire: Seata is an easy-to-use, high-performance, open source distributed transa...</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/geekgeekrun" target="_blank">geekgeekrun</a></td>
+                <td>牛人快跑 - GeekGeekRun ，求职找工作自动化工具（For Boss直聘）。基于 Puppeteer 开发，基于 Electron 运行。界面友好，简...</td>
+                <td>Vue</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/get_jobs" target="_blank">get_jobs</a></td>
+                <td>💼【AI找工作助手】全平台自动投简历脚本：(boss、前程无忧、猎聘、拉勾、智联招聘)</td>
+                <td>Java</td>
+                <td class="status-zombie">Zombie</td>
+            </tr>
+                </table>
+</section>
+<section class="section cluster">
+    <h2>Z. Unclassified (4)</h2>
+    <table class="repo-table">
+        <tr><th>Name</th><th>Description</th><th>Language</th><th>Activity</th></tr>
+
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/linux-mint" target="_blank">linux-mint</a></td>
+                <td>Private repository for the local linux mint workspace</td>
+                <td>HTML</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/win11" target="_blank">win11</a></td>
+                <td></td>
+                <td>Python</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/linux-mint-history" target="_blank">linux-mint-history</a></td>
+                <td>Linux Mint system history, inventory, notes, and lightweight archival indexes.</td>
+                <td>Python</td>
+                <td class="status-active">Active</td>
+            </tr>
+            
+            <tr>
+                <td class="repo-name"><a href="https://github.com/qiao-925/repo-atlas" target="_blank">repo-atlas</a></td>
+                <td></td>
+                <td>Python</td>
+                <td class="status-active">Active</td>
+            </tr>
+                </table>
+</section>
+    </div>
+</body>
+</html>
